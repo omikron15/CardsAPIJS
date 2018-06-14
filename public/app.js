@@ -29,13 +29,13 @@ const showDeckStatus = function(deck){
      div.removeChild(div.firstChild);
    }
       const li1 = document.createElement("li");
-      const li2 = document.createElement("li");
+      // const li2 = document.createElement("li");
       const li3 = document.createElement("li");
       li1.textContent = "Id: " + deck.deck_id;
-      li2.textContent = "Shuffled " + (deck.shuffled || "true");
+      // li2.textContent = "Shuffled " + (deck.shuffled || "true");
       li3.textContent = "Cards remaining: " + deck.remaining;
       div.appendChild(li1);
-      div.appendChild(li2);
+      // div.appendChild(li2);
       div.appendChild(li3);
   }
 
