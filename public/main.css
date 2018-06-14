@@ -1,0 +1,22 @@
+#hand {
+
+display: flex;
+max-width: 550px
+}
+
+#each-hand{
+   background-color: lightgrey;
+   border: 1px solid black;
+   padding: 5px;
+   margin: 5px;
+   width: 100px;
+   height: auto;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#hand-total-div{
+  display: flex;
+}

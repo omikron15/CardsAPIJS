@@ -1,6 +1,5 @@
 const app = function(){
-  const url = "http://deckofcardsapi.com/";
-  let deck;
+
   newDeck();
 
   const button = document.querySelector("#draw-card-button")
@@ -73,16 +72,65 @@ const showDeckStatus = function(deck){
 
   const displayDrawnCards = function (drawnCards){
 
+    //get total logic
+    const pHandTotal = document.querySelector("#hand-total");
+    const pHandTotalLabel = document.querySelector("#hand-total-label");
+    pHandTotal.hidden = false;
+    pHandTotalLabel.hidden = false;
+    total = parseInt(pHandTotal.textContent);
+
     drawnCards.cards.forEach(function(card){
       const div = document.querySelector("#hand")
-      const li1 = document.createElement("li");
+      const handDiv = document.createElement("div");
+      handDiv.id = "each-hand"
+      const p = document.createElement("p");
       const img = document.createElement("img");
-      li1.textContent = "Card: " + card.code;
+
+      cardCode = card.code;
+      if(cardCode.includes("0")){
+      cardCode = cardCode.replace("0", "10");
+        p.textContent = "Card: " + cardCode;
+      }else {
+        p.textContent = "Card: " + card.code;
+      }
       img.src = card.image;
-      img.width = 50;
-      div.appendChild(li1)
-      div.appendChild(img)
+      img.width = 75;
+      div.appendChild(handDiv)
+      handDiv.appendChild(p)
+      handDiv.appendChild(img)
+      value = getCardValue(card);
+      console.log(value);
+      total += value;
     })
+
+    pHandTotal.textContent = total;
+
+}
+
+const getCardValue= function (card){
+  if(isNaN(parseInt(card.value))){
+
+    if(card.value === "ACE"){
+      return 11;
+    }else {
+      return 10;
+    }
+  }else{
+    return parseInt(card.value);
+  }
+}
+
+const showHandTotal = function(drawnCards){
+  const pHandTotal = document.querySelector("#hand-total");
+  const pHandTotalLabel = document.querySelector("#hand-total-label");
+  var total;
+  if(pHandTotal.hidden === true){
+    pHandTotal.hidden = false;
+    pHandTotalLabel.hidden = false;
+    total = 0;
+  }else{
+    total = pHandTotal.textContent;
+  }
 }
 
 window.addEventListener('load', app);
